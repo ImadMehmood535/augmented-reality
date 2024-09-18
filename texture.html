@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-	<title>AR.js Video Playback with NFT Marker</title>
+	<title>AR.js Video Playback</title>
 	<!-- include three.js library -->
 	<script src='js/three.js'></script>
 	<!-- include jsartoolkit -->
@@ -99,12 +99,12 @@ function initialize() {
     // setup markerRoots
     ////////////////////////////////////////////////////////////
 
-    // build markerControls with NFT marker type
+    // build markerControls
     markerRoot1 = new THREE.Group();
     scene.add(markerRoot1);
     let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
-        type: 'nft',
-        descriptorsUrl: 'data/imageBased.iset',  // .fset, .fset3, .iset files
+        type: 'pattern',
+        patternUrl: "data/hiro.patt",
     });
 
     let geometry1 = new THREE.PlaneBufferGeometry(1, 1, 4, 4);
