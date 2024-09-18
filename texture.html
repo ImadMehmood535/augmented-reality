@@ -14,10 +14,10 @@
 	<script src="threex/threex-armarkercontrols.js"></script>
 </head>
 
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;'>
+<body style='margin: 0px; overflow: hidden; font-family: Monospace;'>
 
 <!-- Video Element -->
-<video id="video" muted playsinline webkit-playsinline autoplay loop crossOrigin="anonymous" style="display:none">
+<video id="video" muted playsinline webkit-playsinline autoplay loop preload="auto" crossOrigin="anonymous" style="display:none">
     <source src="video/clicktap.mp4" type='video/mp4'>
     Your browser does not support the video tag.
 </video>
@@ -117,7 +117,12 @@ function initialize() {
 
     markerRoot1.add(mesh1);
 
-    // Start video on user interaction (for mobile)
+    // Try playing the video as soon as it's ready to be interacted with
+    video.play().catch((e) => {
+        console.log("Autoplay failed, retrying after user interaction.");
+    });
+
+    // If autoplay fails, play the video on the first user interaction
     document.body.addEventListener('click', () => {
         if (video.paused) {
             video.play().catch(e => console.error("Video play failed:", e));
